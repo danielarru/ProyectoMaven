@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>crud-maven-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <!-- MySQL JDBC Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+
+        <!-- JUnit para tests unitarios -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.11.0-M1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>master</id>
+            <properties>
+                <db.url>database-1.cluster-czwldocqpm69.us-east-1.rds.amazonaws.com</db.url>
+                <db.user>admin</db.user>
+                <db.password>admin1234</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>replica</id>
+            <properties>
+                <db.url>database-1.cluster-ro-czwldocqpm69.us-east-1.rds.amazonaws.com</db.url>
+                <db.user>admin</db.user>
+                <db.password>admin1234</db.password>
+            </properties>
+        </profile>
+    </profiles>
+</project>
